@@ -12,7 +12,7 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MISC)));
 
     public static final Item IRON_SPEAR = registerItem("iron_spear",
-            new ModSpearItem(ToolMaterials.IRON, 2, -0.4f, new FabricItemSettings().group(ItemGroup.COMBAT)));
+            new ModSpearItem(ToolMaterials.IRON, -1, -0.4f, new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     public static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(RyansMod.MOD_ID, name), item);
