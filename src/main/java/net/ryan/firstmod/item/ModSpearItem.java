@@ -39,7 +39,7 @@ public class ModSpearItem extends ToolItem implements Vanishable {
         builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", (double)attackSpeed, EntityAttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
     }
-    public float getAttackDamage() {return this.attackDamage; }
+    public float getAttackDamage() { return this.attackDamage; }
 
     @Override
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
