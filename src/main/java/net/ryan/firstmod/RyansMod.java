@@ -12,6 +12,5 @@ public class RyansMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
-
 	}
 }
