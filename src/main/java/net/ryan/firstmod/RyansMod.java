@@ -1,6 +1,7 @@
 package net.ryan.firstmod;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.entity.LivingEntity;
 import net.ryan.firstmod.item.ModItems;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
