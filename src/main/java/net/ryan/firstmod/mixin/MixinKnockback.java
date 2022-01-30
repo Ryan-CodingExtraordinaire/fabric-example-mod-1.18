@@ -1,40 +1,38 @@
 package net.ryan.firstmod.mixin;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireballEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.text.Text;
+import net.ryan.firstmod.item.ModItems;
 import net.ryan.firstmod.item.ModSpearItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import static net.ryan.firstmod.item.ModItems.IRON_SPEAR;
+import java.util.function.Predicate;
 
 
-@SuppressWarnings({"UnusedMixin", "unused", "SpellCheckingInspection"})
-    @Mixin(LivingEntity.class)
-    public abstract class MixinKnockback extends LivingEntity {
-
-    protected MixinKnockback(EntityType<? extends LivingEntity> entityType, World world) {
-        super(entityType, world);
-    }
-
-    @ModifyVariable(method = "takeKnockback", at = @At(value = "HEAD"), ordinal = 0, argsOnly = true)
-    public double onTakeKnockback(double strength) {
-        LivingEntity agressor = getAttacker();
-        System.out.println(agressor.getName());
-        if (agressor.isHolding(IRON_SPEAR) ) {
-            System.out.println("Iron Spear used");
-            return 0;
+@Mixin(LivingEntity.class)
+public abstract class MixinKnockback {
+    @ModifyArgs(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;takeKnockback(DDD)V"))
+    public void onTakeKnockback(Args args, DamageSource source, float amount){
+        final double BASE_KNOCKBACK = 0.4;  //BASE_KNOCKBACK is the hardcoded value in the original takeKnockback method call
+        double knockbackStrength = BASE_KNOCKBACK;
+        Entity antagoniser = source.getSource();
+        if(antagoniser instanceof LivingEntity){ //living entity so it should work for mobs wielding item (untested)
+            Predicate<ItemStack> ModSpearItem;
+            if(((LivingEntity) antagoniser).isHolding(ModItems.IRON_SPEAR)) {
+                knockbackStrength = 0.1;
+            }
         }
-
-        else{
-            return 2;
-        }
+        args.set(0, knockbackStrength);
     }
 }
+

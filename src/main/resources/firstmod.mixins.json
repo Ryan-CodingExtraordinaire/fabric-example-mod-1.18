@@ -4,9 +4,10 @@
   "package": "net.ryan.firstmod.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "MixinKnockback",
+    "MixinEnchantmentHelper"
   ],
   "client": [
-    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
