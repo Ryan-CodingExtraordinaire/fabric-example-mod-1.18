@@ -1,8 +1,10 @@
 package net.ryan.firstmod.mixin;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
@@ -26,11 +28,13 @@ public abstract class MixinKnockback {
         final double BASE_KNOCKBACK = 0.4;  //BASE_KNOCKBACK is the hardcoded value in the original takeKnockback method call
         double knockbackStrength = BASE_KNOCKBACK;
         Entity antagoniser = source.getSource();
-        if(antagoniser instanceof LivingEntity){ //living entity so it should work for mobs wielding item (untested)
+        if(antagoniser instanceof LivingEntity){ //living entity, so it should work for mobs wielding item (untested)
             Predicate<ItemStack> ModSpearItem;
             if(((LivingEntity) antagoniser).isHolding(ModItems.IRON_SPEAR)) {
                 knockbackStrength = 0.1;
             }
+
+
         }
         args.set(0, knockbackStrength);
     }

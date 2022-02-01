@@ -16,7 +16,7 @@ public class RyansMod implements ModInitializer {
 	}
 }
 
-//TODO: change item knockback to very low  (very hard)
+
 //TODO: change item texture to work when thrown
 //TODO: change projectile to a spearEntity
 //TODO: change enchantibility of ModSpearItem
