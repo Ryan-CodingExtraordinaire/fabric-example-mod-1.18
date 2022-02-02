@@ -32,11 +32,11 @@ public class MixinEnchantmentHelper {
     @Redirect(method = "getPossibleEntries", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentTarget;isAcceptableItem(Lnet/minecraft/item/Item;)Z"))
     private static boolean isAcceptableItem(EnchantmentTarget enchantmentTarget, Item item) {
         ItemStack stack = new ItemStack(item);
-
-        if(item == IRON_SPEAR)
-            return currentEnchantment.isAcceptableItem(stack) || currentEnchantment.type == WEAPON || currentEnchantment == LOYALTY; //only lets enchantments be applied to an item from the encht- table. Does not mean they will work on the item.
-
+        if(item == IRON_SPEAR) { return currentEnchantment.isAcceptableItem(stack); }
         return enchantmentTarget.isAcceptableItem(item);
     }
-
+// If the iron spear is an acceptable item (mixin'ed into each relevant enchantment) then said enchantment becomes available for both primary and secondary enchanting (ie. ench- table and anvil)
+// this code here specifically lets the Iron spear be enchanted by the primary method (ench- table)
+// currently all secondary enchantments also become primary.
+// to add other primary enchantment option (by not adding secondary ones) just add a 'or' statement in the if return. eg. return currentEnchantment.isAcceptableItem(stack) || currentEnchantment == PROTECTION
 }
