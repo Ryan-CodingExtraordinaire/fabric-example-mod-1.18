@@ -4,8 +4,12 @@
   "package": "net.ryan.firstmod.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "MixinKnockback",
+    "MixinEntityKnockback",
     "MixinPiercingEnchantment",
+    "MixinLoyaltyEnchantment",
+    "MixinFireAspectEnchantment",
+    "MixinKnockbackEnchantment",
+    "MixinDamageEnchantment",
     "MixinEnchantmentHelper"
   ],
   "client": [

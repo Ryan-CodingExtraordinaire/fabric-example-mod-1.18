@@ -1,18 +1,10 @@
 package net.ryan.firstmod.mixin;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FireballEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.text.Text;
 import net.ryan.firstmod.item.ModItems;
-import net.ryan.firstmod.item.ModSpearItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -22,7 +14,7 @@ import java.util.function.Predicate;
 
 
 @Mixin(LivingEntity.class)
-public abstract class MixinKnockback {
+public abstract class MixinEntityKnockback {
     @ModifyArgs(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;takeKnockback(DDD)V"))
     public void onTakeKnockback(Args args, DamageSource source, float amount){
         final double BASE_KNOCKBACK = 0.4;  //BASE_KNOCKBACK is the hardcoded value in the original takeKnockback method call

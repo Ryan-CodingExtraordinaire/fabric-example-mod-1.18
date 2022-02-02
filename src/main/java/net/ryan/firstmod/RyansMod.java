@@ -17,6 +17,8 @@ public class RyansMod implements ModInitializer {
 }
 
 
-//TODO: change item texture to work when thrown
-//TODO: change projectile to a spearEntity
-//TODO: change enchantibility of ModSpearItem
+//TODO: get a good spear texture.
+//TODO: change how item is held in json files, see trident stuff for reference.
+//TODO: change attack animation for the spear
+//TODO: change projectile to a spearEntity.
+//TODO: reimplement enchantment behaviour of piercing for Spear projectiles.
