@@ -16,8 +16,6 @@ public class RyansMod implements ModInitializer {
 	}
 }
 
-
-//TODO: get a good spear texture.
 //TODO: change how item is held in json files, see trident stuff for reference.
 //TODO: change attack animation for the spear
 //TODO: change projectile to a spearEntity.
