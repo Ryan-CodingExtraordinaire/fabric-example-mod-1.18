@@ -23,7 +23,6 @@ import net.ryan.firstmod.entity.ThrownSpearEntity;
 
 import java.util.UUID;
 
-
 public class ModSpearItem extends ToolItem implements Vanishable {
     private final float attackDamage;
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;

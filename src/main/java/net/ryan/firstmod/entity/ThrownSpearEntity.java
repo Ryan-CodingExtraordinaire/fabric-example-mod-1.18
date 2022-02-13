@@ -36,7 +36,7 @@ public class ThrownSpearEntity extends PersistentProjectileEntity {
     }
 
     public ThrownSpearEntity(World world, LivingEntity owner, ItemStack stack) {
-        super(EntityType.TRIDENT, owner, world);  //TODO: change the Entity type to the spear type
+        super(ModEntities.SPEAR_PROJECTILE,owner, world);
         this.spearStack = stack.copy();
         this.dataTracker.set(LOYALTY, (byte) EnchantmentHelper.getLoyalty(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
@@ -154,6 +154,7 @@ public class ThrownSpearEntity extends PersistentProjectileEntity {
             super.onPlayerCollision(player);
         }
     }
+
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
