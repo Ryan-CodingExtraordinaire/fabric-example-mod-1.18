@@ -11,10 +11,8 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
@@ -31,10 +29,12 @@ public class ThrownSpearEntity extends PersistentProjectileEntity {
     private boolean dealtDamage;
     public int returnTimer;
 
-    public ThrownSpearEntity(EntityType<? extends ThrownSpearEntity> entityType, World world) {
-        super((EntityType<? extends PersistentProjectileEntity>)entityType, world);
+    public ThrownSpearEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+        super(entityType, world);
     }
-
+    public ThrownSpearEntity(EntityType<? extends PersistentProjectileEntity> type, double x, double y, double z, World world){
+        super(type, x,y,z, world);
+    }
     public ThrownSpearEntity(World world, LivingEntity owner, ItemStack stack) {
         super(ModEntities.SPEAR_PROJECTILE,owner, world);
         this.spearStack = stack.copy();
