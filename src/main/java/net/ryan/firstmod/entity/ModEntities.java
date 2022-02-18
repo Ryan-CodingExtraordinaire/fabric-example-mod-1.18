@@ -3,16 +3,15 @@ package net.ryan.firstmod.entity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.ryan.firstmod.RyansMod;
 
 public class ModEntities {
-    public static final EntityType<ThrownSpearEntity> SPEAR_PROJECTILE = Registry.register(
+    public static final EntityType<SpearProjectileEntity> SPEAR_PROJECTILE = Registry.register(
             Registry.ENTITY_TYPE,
-            new Identifier(RyansMod.MOD_ID, "mod_projectile"),
-            FabricEntityTypeBuilder.<ThrownSpearEntity>create(SpawnGroup.MISC, ThrownSpearEntity::new).build()
+            new Identifier(RyansMod.MOD_ID, "spear_projectile"),
+            FabricEntityTypeBuilder.<SpearProjectileEntity>create(SpawnGroup.MISC, SpearProjectileEntity::new).build()
     );
 
       public static void registerModEntities()

@@ -22,21 +22,21 @@ import net.minecraft.world.World;
 import net.ryan.firstmod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
-public class ThrownSpearEntity extends PersistentProjectileEntity {
-    private static final TrackedData<Byte> LOYALTY = DataTracker.registerData(ThrownSpearEntity.class, TrackedDataHandlerRegistry.BYTE);
-    private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(ThrownSpearEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+public class SpearProjectileEntity extends PersistentProjectileEntity {
+    private static final TrackedData<Byte> LOYALTY = DataTracker.registerData(SpearProjectileEntity.class, TrackedDataHandlerRegistry.BYTE);
+    private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(SpearProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private ItemStack spearStack = new ItemStack(ModItems.IRON_SPEAR);
     private boolean dealtDamage;
     public int returnTimer;
 
-    public ThrownSpearEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+    public SpearProjectileEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
-    public ThrownSpearEntity(EntityType<? extends PersistentProjectileEntity> type, double x, double y, double z, World world){
+    public SpearProjectileEntity(EntityType<? extends PersistentProjectileEntity> type, double x, double y, double z, World world){
         super(type, x,y,z, world);
     }
-    public ThrownSpearEntity(World world, LivingEntity owner, ItemStack stack) {
-        super(ModEntities.SPEAR_PROJECTILE,owner, world);
+    public SpearProjectileEntity(World world, LivingEntity owner, ItemStack stack) {
+        super(ModEntities.SPEAR_PROJECTILE, owner, world);
         this.spearStack = stack.copy();
         this.dataTracker.set(LOYALTY, (byte) EnchantmentHelper.getLoyalty(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());

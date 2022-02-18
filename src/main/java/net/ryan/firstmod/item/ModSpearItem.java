@@ -14,12 +14,13 @@ import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.ryan.firstmod.entity.ThrownSpearEntity;
+import net.ryan.firstmod.entity.SpearProjectileEntity;
 
 import java.util.UUID;
 
@@ -66,18 +67,16 @@ public class ModSpearItem extends ToolItem implements Vanishable {
 
         if (!world.isClient) {
             stack.damage(1, playerEntity, p -> p.sendToolBreakStatus(user.getActiveHand()));
-
-                ThrownSpearEntity spearEntity = new ThrownSpearEntity(world, (LivingEntity)playerEntity, stack);
-                spearEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, 1.25f, 1.0f);
-                if (playerEntity.getAbilities().creativeMode) {
-                    spearEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
-                }
-                world.spawnEntity(spearEntity);
-                world.playSoundFromEntity(null, spearEntity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                if (!playerEntity.getAbilities().creativeMode) {
-                    playerEntity.getInventory().removeOne(stack);
-                }
-
+            SpearProjectileEntity spearEntity = new SpearProjectileEntity(world, (LivingEntity)playerEntity, stack);
+            spearEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, 1.25f, 1.0f);
+            if (playerEntity.getAbilities().creativeMode) {
+                spearEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
+            }
+            world.spawnEntity(spearEntity);
+            world.playSoundFromEntity(null, spearEntity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0f, 1.0f);
+            if (!playerEntity.getAbilities().creativeMode) {
+                playerEntity.getInventory().removeOne(stack);
+            }
         }
         playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
 
