@@ -14,12 +14,15 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/firstmod/textures/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.ryan.firstmod.RyansMod"
+      "net.ryan.firstmod.RyansModGeneral"
+    ],
+    "client": [
+      "net.ryan.firstmod.RyansModClient"
     ]
   },
   "mixins": [

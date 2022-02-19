@@ -65,19 +65,14 @@ public class ModSpearItem extends ToolItem implements Vanishable {
             return;
         }
 
-        if (!world.isClient) {
-            stack.damage(1, playerEntity, p -> p.sendToolBreakStatus(user.getActiveHand()));
-            SpearProjectileEntity spearEntity = new SpearProjectileEntity(world, (LivingEntity)playerEntity, stack);
-            spearEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, 1.25f, 1.0f);
-            if (playerEntity.getAbilities().creativeMode) {
-                spearEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
-            }
-            world.spawnEntity(spearEntity);
-            world.playSoundFromEntity(null, spearEntity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            if (!playerEntity.getAbilities().creativeMode) {
-                playerEntity.getInventory().removeOne(stack);
-            }
+        //Play sound on attack
+        world.playSound((PlayerEntity) null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_DRAGON_SHOOT,
+                SoundCategory.PLAYERS, 0.2F, 3.0F);
+
+        if (!world.isClient) { //check if statement to other implementations
+           // do the spawn projectile
         }
+
         playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
 
     }

@@ -1,14 +1,10 @@
 package net.ryan.firstmod.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.entity.EntityInteraction;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.item.*;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.ryan.firstmod.RyansMod;
+import net.ryan.firstmod.RyansModGeneral;
 
 public class ModItems {
 
@@ -20,10 +16,10 @@ public class ModItems {
 
 
     public static Item registerItem(String name, Item item){
-        return Registry.register(Registry.ITEM, new Identifier(RyansMod.MOD_ID, name), item);
+        return Registry.register(Registry.ITEM, new Identifier(RyansModGeneral.MOD_ID, name), item);
     }
     public static void registerModItems() {
-        RyansMod.LOGGER.info("Registering Mod Items for"+RyansMod.MOD_ID);
+        RyansModGeneral.LOGGER.info("Registering Mod Items for"+ RyansModGeneral.MOD_ID);
     }
 
 }
