@@ -20,6 +20,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.ryan.firstmod.entity.ModEntities;
 import net.ryan.firstmod.entity.SpearProjectileEntity;
 
 import java.util.UUID;
@@ -64,13 +65,14 @@ public class ModSpearItem extends ToolItem implements Vanishable {
         if (i < 10) {
             return;
         }
-
         //Play sound on attack
         world.playSound((PlayerEntity) null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_DRAGON_SHOOT,
                 SoundCategory.PLAYERS, 0.2F, 3.0F);
 
-        if (!world.isClient) { //check if statement to other implementations
-           // do the spawn projectile
+        if (!user.world.isClient) { //check if statement to other implementations
+           SpearProjectileEntity projectile = new SpearProjectileEntity(ModEntities.SPEAR_PROJECTILE, user.getX(), user.getY() + 1.5f, user.getZ(), world);
+            projectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2F, 0.5F);
+            world.spawnEntity(projectile);
         }
 
         playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
